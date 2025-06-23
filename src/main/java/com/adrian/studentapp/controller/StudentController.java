@@ -54,4 +54,14 @@ public class StudentController {
         }
         return existingStudent;
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteStudent(@PathVariable Long id)
+    {
+        Student existingStudent=studentRepository.findById(id).orElse(null);
+        if(existingStudent != null)
+        {
+            studentRepository.deleteById(id);
+        }
+    }
 }
