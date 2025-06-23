@@ -29,4 +29,11 @@ public class StudentController {
     {
         return studentRepository.save(student);
     }
+
+    @GetMapping("/{id}")
+    public Student getStudentById(@PathVariable Long id)
+    {
+        return studentRepository.findById(id).orElse(null);
+
+    }
 }
