@@ -36,4 +36,22 @@ public class StudentController {
         return studentRepository.findById(id).orElse(null);
 
     }
+
+    @PutMapping("/{id}")
+    public Student updateStudent(@PathVariable Long id, @RequestBody Student updateStudent)
+    {
+        Student existingStudent=studentRepository.findById(id).orElse(null);
+        if(existingStudent != null)
+        {
+            existingStudent.setName(updateStudent.getName());
+            existingStudent.setAge(updateStudent.getAge());
+            existingStudent.setDepartment(updateStudent.getDepartment());
+
+            studentRepository.save(existingStudent);
+        }
+        else {
+            return null;
+        }
+        return existingStudent;
+    }
 }
